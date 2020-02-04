@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+<div>
+    <input type="text">
+</div>
+<script>
+    // 最简单的回调函数
+    function callback() {
+        console.log("do something");
+    }
+    console.log("before callback");
+    setTimeout(callback,1000);
+    console.log("after callback");
+</script>
+</body>
+</html>
