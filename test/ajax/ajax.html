@@ -6,33 +6,27 @@
 </head>
 <body>
 <script>
-    // 最简单的Promise
-    function resolve(s) {
-        console.log(s);
+    function multiply(input) {
+        return new Promise(function (resolve) {
+            console.log('calculating ' + input + ' x ' + input + '...');
+            setTimeout(resolve, 500, input * input);
+        });
     }
 
-    function reject(s) {
-        console.log(s);
+    function add(input) {
+        return new Promise(function (resolve) {
+            console.log('calculating ' + input + ' + ' + input + '...');
+            setTimeout(resolve, 500, input + input);
+        });
     }
 
-    function test(resolve, reject) {
-        let timeOut = Math.random() * 2;
-        console.log("设置时间" + timeOut + "秒");
-        setTimeout(function () {
-            if (timeOut < 1) {
-                console.log("call resolve ...");
-                resolve("200 ok");
-            } else {
-                console.log("call reject ...");
-                reject('timeout in ' + timeOut + ' seconds.');
-            }
-        }, timeOut * 1000)
-    }
+    let promise = new Promise(function (resolve) {
+        console.log("start new Promise ...");
+        resolve(123);
+    });
 
-    new Promise(test).then(function (result) {
-        console.log("成功" + result);
-    }).catch(function (reason) {
-        console.log("失败" + reason);
+    promise.then(multiply).then(add).then(multiply).then(add).then(function (result) {
+        console.log("get value " + result);
     });
 </script>
 </body>
