@@ -3,30 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>ajax</title>
+    <script src="jquery-1.4.4.js"></script>
 </head>
 <body>
+<!-- HTML结构 -->
+<div id="test-jquery">
+    <p id="para-1" class="color-red">JavaScript</p>
+    <p id="para-2" class="color-green">Haskell</p>
+    <p class="color-red color-green">Erlang</p>
+    <p name="name" class="color-black">Python</p>
+    <form class="test-form" target="_blank" action="#0" onsubmit="return false;">
+        <legend>注册新用户</legend>
+        <fieldset>
+            <p><label>名字: <input name="name"></label></p>
+            <p><label>邮件: <input name="email"></label></p>
+            <p><label>口令: <input name="password" type="password"></label></p>
+            <p><button type="submit">注册</button></p>
+        </fieldset>
+    </form>
+    <br>
+    <button id="b1">仅js变化</button>
+    <button id="b2">仅Erlang变化</button>
+    <button id="b3">js and erlang</button>
+    <button id="b4">all 编程语言</button>
+    <button id="b5">选择名字input</button>
+    <button id="b6">选择名字input和邮件</button>
+</div>
 <script>
-    function multiply(input) {
-        return new Promise(function (resolve) {
-            console.log('calculating ' + input + ' x ' + input + '...');
-            setTimeout(resolve, 500, input * input);
+    $(function () {
+        // 仅选择js
+        $("#b1").click(function () {
+            $("#para-1").css("background-color","#ffa1b0");
         });
-    }
-
-    function add(input) {
-        return new Promise(function (resolve) {
-            console.log('calculating ' + input + ' + ' + input + '...');
-            setTimeout(resolve, 500, input + input);
+        // 仅选择erlang
+        $("#b2").click(function () {
+            $("p.color-red.color-green").css("background-color","#76ff95");
         });
-    }
-
-    let promise = new Promise(function (resolve) {
-        console.log("start new Promise ...");
-        resolve(123);
-    });
-
-    promise.then(multiply).then(add).then(multiply).then(add).then(function (result) {
-        console.log("get value " + result);
+        // 选择js和erlang
+        $("#b3").click(function () {
+           $("p.color-red").css("background-color","#494aff");
+        });
+        // 选择所有编程语言
+        $("#b4").click(function () {
+            $("p[class^=color]").css("background-color","#ff3631");
+        });
+        // 选择名字input
+        $("#b5").click(function () {
+            $("input[name=name]").css("background-color","#ffd435");
+        });
+        // 选择名字和邮件input
+        $("#b6").click(function () {
+            $("input[name=name],input[name=email]").css("background-color","#53fffa");
+        })
     });
 </script>
 </body>
