@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>层级选择器</title>
+    <script src="../ajax/jquery-1.4.4.js"></script>
+</head>
+<body>
+<div class="testing">
+    <ul class="lang">
+        <li class="js">js</li>
+        <li class="python">python</li>
+        <li class="java">java</li>
+    </ul>
+    <button id="js">第一种选择js</button>
+    <button id="js1">第二种选择js</button>
+    <button id="js2">选择所有语言</button>
+    <button id="js3">多层选择python</button>
+    <button id="b">成功的子选择器</button>
+    <button id="b1">失败的子选择器</button>
+</div>
+<script>
+    $(function () {
+       // 使用ul和li选择js
+        $("#js").click(function () {
+           $("ul.lang li.js").css("background", "#91ffb3");
+        });
+        // 使用div和li选择js
+        $("#js1").click(function () {
+            $("div.testing li.js").css("background","#ccff5b")
+        });
+        // 选择所有语言
+        $("#js2").click(function () {
+            $("div.testing li").css("background","#ff152b");
+        });
+        // 多层选择
+        $("#js3").click(function () {
+            $("div.testing ul.lang li.python").css("background","#ff83e8");
+        });
+        // 成功的子选择器
+        $("#b").click(function () {
+           $("ul.lang > li.java").css("background","#5047ff");
+        });
+        // 失败的子选择器
+        $("#b1").click(function () {
+            $("div.testing > li.java").css("background","#57ffab");
+        });
+    });
+</script>
+</body>
+</html>
