@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查找过滤</title>
+    <script src="../ajax/jquery-1.4.4.js"></script>
+</head>
+<body>
+<ul class="lang">
+    <li class="js dy">JavaScript</li>
+    <li class="dy">Python</li>
+    <li id="swift">Swift</li>
+    <li class="dy">Scheme</li>
+    <li name="haskell">Haskell</li>
+</ul>
+<script>
+    $(function () {
+        /*
+         * 使用find查找
+         */
+        let ul = $("ul.lang");
+        console.log(ul.find(".dy"));
+        console.log(ul.find(".js"));
+        console.log(ul.find("#swift"));
+        console.log(ul.find("[name=haskell]"));
+        /*
+        * 从当前节点向上查找
+        */
+        let swift = $("#swift");
+        console.log(swift.parent());
+        //可以同时传入一个过滤条件，如果父节点不满足条件，返回空jq对象。
+        console.log(swift.parent(".red"));
+        /*
+        * 从当前节点查找同级节点
+        */
+        console.log(swift.next());
+        //也可以传入过滤条件。
+        console.log(swift.prev(".dy"));
+    });
+</script>
+</body>
+</html>
