@@ -15,27 +15,20 @@
 </ul>
 <script>
     $(function () {
-        /*
-         * 使用find查找
-         */
-        let ul = $("ul.lang");
-        console.log(ul.find(".dy"));
-        console.log(ul.find(".js"));
-        console.log(ul.find("#swift"));
-        console.log(ul.find("[name=haskell]"));
-        /*
-        * 从当前节点向上查找
-        */
-        let swift = $("#swift");
-        console.log(swift.parent());
-        //可以同时传入一个过滤条件，如果父节点不满足条件，返回空jq对象。
-        console.log(swift.parent(".red"));
-        /*
-        * 从当前节点查找同级节点
-        */
-        console.log(swift.next());
-        //也可以传入过滤条件。
-        console.log(swift.prev(".dy"));
+        let lang = $("ul.lang li");
+        //拿到所有class中有dy的节点
+        console.log(lang.filter(".dy"));
+        //拿到所有内容开头为S的节点。
+        console.log(lang.filter(function () {
+            return this.innerHTML.indexOf("S") === 0;
+        }));
+
+        let array = lang.map(function () {
+            return this.innerHTML;
+        }).get();//使用get方法拿到jq对象中的数组。
+        console.log(array);
+
+        console.log(lang.first());
     });
 </script>
 </body>
