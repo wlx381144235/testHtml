@@ -6,29 +6,34 @@
     <script src="../ajax/jquery-1.4.4.js"></script>
 </head>
 <body>
-<ul class="lang">
-    <li class="js dy">JavaScript</li>
-    <li class="dy">Python</li>
-    <li id="swift">Swift</li>
-    <li class="dy">Scheme</li>
-    <li name="haskell">Haskell</li>
-</ul>
+<form id="test-form" action="#0" onsubmit="return false;">
+    <p><label>Name: <input name="name"></label></p>
+    <p><label>Email: <input name="email"></label></p>
+    <p><label>Password: <input name="password" type="password"></label></p>
+    <p>Gender: <label><input name="gender" type="radio" value="m" checked> Male</label> <label><input name="gender" type="radio" value="f"> Female</label></p>
+    <p><label>City: <select name="city">
+        <option value="BJ" selected>Beijing</option>
+        <option value="SH">Shanghai</option>
+        <option value="CD">Chengdu</option>
+        <option value="XM">Xiamen</option>
+    </select></label></p>
+    <p><button type="submit">Submit</button></p>
+</form>
 <script>
     $(function () {
-        let lang = $("ul.lang li");
-        //拿到所有class中有dy的节点
-        console.log(lang.filter(".dy"));
-        //拿到所有内容开头为S的节点。
-        console.log(lang.filter(function () {
-            return this.innerHTML.indexOf("S") === 0;
-        }));
-
-        let array = lang.map(function () {
-            return this.innerHTML;
-        }).get();//使用get方法拿到jq对象中的数组。
-        console.log(array);
-
-        console.log(lang.first());
+        $("button[type=submit]").click(function f() {
+            let json = {};
+            $('#test-form [name]').filter(function() {
+                /*
+                这里写个name不等于，因为gender是两个input，不写的话，第二个f会覆盖第一个m，所以又加了一个checked。
+                 */
+                if(this.name && this.name !== 'gender' || this.checked){
+                    json[this.name]=this.value;
+                }
+            });
+            json = JSON.stringify(json);
+            console.log(json);
+        });
     });
 </script>
 </body>
