@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器</title>
+    <script src="../ajax/jquery-1.4.4.js"></script>
+</head>
+<body>
+<div class="testing">
+    <ul class="lang">
+        <li class="js">js</li>
+        <li class="python">python</li>
+        <li class="java">java</li>
+    </ul>
+</div>
+<script>
+    $(function () {
+        console.log($("ul.lang li"));//选择所有语言
+        console.log($("ul.lang li:first-child"));//选择第一个语言
+        console.log($("ul.lang li:last-child"));//选择最后一个语言
+        console.log($("ul.lang li:nth-child(2)"));//选择序号为二的语言
+        console.log($("ul.lang li:nth-child(even)"));//选择序号为偶数的语言
+        console.log($("ul.lang li:nth-child(odd)"));//选择序号为奇数的语言
+    });
+</script>
+</body>
+</html>
